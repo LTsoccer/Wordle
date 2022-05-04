@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace Wordle
 {
-	public class HumanBot: IWordleBot
-	{
-		public HumanBot()
-		{
-		}
+    public class AIBot : IWordleBot
+    {
+        public AIBot()
+        {
+        }
 
-        public List<GuessResult> Guesses { get ; set; } = new List<GuessResult>();
+        public List<GuessResult> Guesses { get; set; } = new List<GuessResult>();
 
         public string GenerateGuess()
         {
