@@ -18,7 +18,7 @@ namespace Wordle
             var secretWords = new string[] { "crane", "trash", "about" };
 
             foreach (var secretWord in secretWords ) {
-                var bot = new HumanBot();
+                var bot = new AIBot();
 
                 Console.WriteLine("New Game!");
                 var game = new WordleGame(secretWord);
