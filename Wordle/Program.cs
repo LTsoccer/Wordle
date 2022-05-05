@@ -15,7 +15,7 @@ namespace Wordle
 
             int totalGuesses = 0;
 
-            var secretWords = new string[] { "crane", "trash", "about" };
+            var secretWords = new string[] { "crane", "askew", "pause", "fewer", "black", "plant", "cycle", "their", "trash", "about" };
 
             foreach (var secretWord in secretWords ) {
                 var bot = new AIBot();

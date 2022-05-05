@@ -62,7 +62,7 @@ namespace Wordle
                         {
                             guessResult.Guess[i].LetterResult = LetterResult.Misplaced;
 
-                            foundArray[j] = 1;
+                            foundArray[j] = 2;
 
                             break;
                         }

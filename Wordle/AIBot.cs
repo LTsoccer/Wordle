@@ -17,7 +17,6 @@ namespace Wordle
                     GuessWords.Add(line);
                 }
             }
-            Console.WriteLine(Words.Count);
             Words = GuessWords;
         }
 
@@ -31,6 +30,7 @@ namespace Wordle
         public string GenerateGuess()
         {
             Words = GuessWords;
+            goodGuess = "";
             var guess = "";
             if (Guesses.Count == 0)
             {
@@ -49,10 +49,7 @@ namespace Wordle
                 {
                     EliminateWords(letter, counting);
                     counting += 1;
-                    Console.WriteLine(counting);
                 }
-
-                Console.WriteLine(Words.Count);
 
                 Random randomNumber = new Random();
                 int wordIndex = randomNumber.Next(0, Words.Count - 1);
@@ -72,7 +69,28 @@ namespace Wordle
 
         private void EliminateWords(LetterGuess letter, int counting)
         {
-            if ((letter.LetterResult == LetterResult.Incorrect) && (!goodGuess.Contains(letter.Letter)) )
+            int count = 0;
+            foreach (char character in goodGuess) 
+            {
+                if (character == letter.Letter)
+                {
+                    count += 1;
+                }
+            }
+            if ((letter.LetterResult == LetterResult.Incorrect) && (count != 1))
+            {
+                for (int i = Words.Count - 1; i >= 0; i--)
+                {
+                    string word1 = Words[i];
+                
+                    if (word1[counting].Equals(Guesses[Guesses.Count - 1].Guess[counting].Letter))
+                    {
+                        Words.Remove(word1);
+                    }
+
+                }
+            }
+            else if ((letter.LetterResult == LetterResult.Incorrect) && (count == 1))
             {
                 for (int i = Words.Count - 1; i >= 0; i--)
                 {
@@ -100,6 +118,10 @@ namespace Wordle
                 {
                     string word1 = Words[i];
                     if (!word1.Contains(letter.Letter))
+                    {
+                        Words.Remove(word1);
+                    }
+                    if (word1[counting].Equals(Guesses[Guesses.Count - 1].Guess[counting].Letter))
                     {
                         Words.Remove(word1);
                     }
